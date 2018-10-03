@@ -1,0 +1,37 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+version =  '0.1.0'
+
+sourceSets {
+	main {
+		java {
+		srcDir 'src'
+		}
+	}
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Version': version,
+        'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      	'Main-Class': 'sandbox.Invoice'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    testCompile("junit:junit")
+}
